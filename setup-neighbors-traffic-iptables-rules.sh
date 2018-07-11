@@ -136,7 +136,7 @@ del_prerouting_mac_rules() {
 }
 
 if [ "$SHOWRULES" = "true" ] ; then
-    ip6tables -t raw -L TRAFFIC_PREROUTING_FROM
+    ip6tables-save | sed -n /:TRAFFIC_PREROUTING_FROM/,/COMMIT/p
     exit 0
 fi
 
